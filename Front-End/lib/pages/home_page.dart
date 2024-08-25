@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     "Meal Plan",
     "Store",
     "Track My Pet",
-    "Pet Community",
+    "Medical Record",
   ];
 
   @override
@@ -44,8 +44,8 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           SizedBox(
-            height: double.infinity,
-            width: double.infinity,
+            height: 232,
+            width: 186,
             child: Image.asset(
               "assets/foot.png",
               alignment: AlignmentDirectional.centerStart,

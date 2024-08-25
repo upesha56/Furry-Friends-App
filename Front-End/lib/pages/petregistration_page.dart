@@ -165,7 +165,7 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        extendBodyBehindAppBar: true,
+        //extendBodyBehindAppBar: true,
         appBar: AppBar(
           // App Bar
           title: const Align(
@@ -514,8 +514,8 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          width: 180.0,
-          height: 40, // Set the width here
+          width: 170.0,
+          height: 35, // Set the width here
           child: ElevatedButton(
             onPressed: () {
               // Handle back action
@@ -534,8 +534,8 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
           ),
         ),
         SizedBox(
-          width: 180.0,
-          height: 40, // Set the width here
+          width: 170.0,
+          height: 35, // Set the width here
           child: ElevatedButton(
             onPressed: petRegistration,
             style: ElevatedButton.styleFrom(
