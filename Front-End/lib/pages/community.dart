@@ -1,9 +1,11 @@
 import 'package:chat/pages/comment_page.dart';
 import 'package:chat/pages/home_page.dart';
 import 'package:chat/pages/store_page.dart';
+import 'package:chat/pages/userprofile_page.dart';
 import 'package:chat/widgets/first_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CommunityPage extends StatelessWidget {
   CommunityPage({super.key});
@@ -178,8 +180,16 @@ class CommunityPage extends StatelessWidget {
                   onTap: () {}, child: const Icon(Icons.people)),
               label: 'People',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => userProfile(),
+                        ));
+                  },
+                  child: Icon(Icons.account_circle)),
               label: 'Account',
             ),
           ],
