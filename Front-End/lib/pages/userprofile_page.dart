@@ -1,6 +1,7 @@
 import 'package:chat/pages/loging_page.dart';
 import 'package:chat/pages/petregistration_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -265,7 +266,7 @@ class _userProfileState extends State<userProfile> {
               ),
               const SizedBox(width: 55),
               Container(
-                color: Colors.amberAccent,
+                color: Color(0xffF9E8BD),
               ),
             ],
           );
@@ -314,7 +315,7 @@ class _userProfileState extends State<userProfile> {
         const Text(
           "Select your pet category",
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 24,
           ),
         ),
         const SizedBox(
@@ -324,9 +325,9 @@ class _userProfileState extends State<userProfile> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.amberAccent,
+              color: Color(0xffF9E8BD),
             ),
-            width: 80,
+            width: 70,
             height: 80,
             child: IconButton(
               onPressed: () {
@@ -341,9 +342,9 @@ class _userProfileState extends State<userProfile> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.amberAccent,
+              color: Color(0xffF9E8BD),
             ),
-            width: 80,
+            width: 70,
             height: 80,
             child: IconButton(
               onPressed: () {
@@ -360,9 +361,9 @@ class _userProfileState extends State<userProfile> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.amberAccent,
+              color: Color(0xffF9E8BD),
             ),
-            width: 80,
+            width: 70,
             height: 80,
             child: IconButton(
               onPressed: () {
@@ -379,9 +380,9 @@ class _userProfileState extends State<userProfile> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.amberAccent,
+              color: Color(0xffF9E8BD),
             ),
-            width: 80,
+            width: 70,
             height: 80,
             child: IconButton(
               onPressed: () {
@@ -414,13 +415,22 @@ class _userProfileState extends State<userProfile> {
                 fit: BoxFit.cover,
                 opacity: 0.7),
           ),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.add_circle_outline,
-                  size: 40, color: Colors.black), // Add your icon
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PetRegistrationPage(),
+                      ));
+                },
+                child: const Icon(Icons.add_circle_outline,
+                    size: 40, color: Colors.black),
+              ), // Add your icon
               SizedBox(height: 10), // Spacing between icon and text
-              Text(
+              const Text(
                 "Add Your Pet",
                 style: TextStyle(
                   fontSize: 24,

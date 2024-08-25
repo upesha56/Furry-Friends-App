@@ -22,7 +22,7 @@ class CommunityPage extends StatelessWidget {
             "Community",
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: Color.fromARGB(204, 0, 0, 0),
+              color: Color(0xffFFB03E),
               fontSize: 30,
             ),
           ),
@@ -64,7 +64,7 @@ class CommunityPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 280,
+                        width: 250,
                         height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -101,7 +101,7 @@ class CommunityPage extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.photo_library,
-                          size: 38,
+                          size: 35,
                           color: Colors.grey,
                         ),
                       ),
