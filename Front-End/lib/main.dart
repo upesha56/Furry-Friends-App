@@ -1,4 +1,6 @@
 import 'package:chat/pages/loging_page.dart';
+import 'package:chat/pages/signup_page.dart';
+import 'package:chat/pages/userprofile_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, home: login());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: userProfile());
   }
 }

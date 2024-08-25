@@ -78,11 +78,13 @@ flutter:
   - assets/googlelogo.png
   - assets/Facebook_Logo.png
   - assets/loginAndSignin.jpg
-  - assets/doglogo.jpg
-  - assets/catlogo.jpg
-  - assets/fish.jpg
-  - assets/rabbit.jpg
   - assets/signupimage.png
+  - assets/rabbitlogo.png
+  - assets/fishlogo.png
+  - assets/catlogo.png
+  - assets/doglogo.png
+  - assets/addaone.jpg
+  - assets/addtwo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
