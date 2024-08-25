@@ -85,7 +85,10 @@ flutter:
   - assets/doglogo.png
   - assets/addaone.jpg
   - assets/addtwo.jpg
-
+  - assets/pet-food.jpg
+  - assets/pet-collar.jpg
+  - assets/pet-equepment.jpg
+  - assets/pet-medicine.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

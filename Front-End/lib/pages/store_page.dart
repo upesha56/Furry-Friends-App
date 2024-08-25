@@ -6,9 +6,10 @@ class StorePage extends StatelessWidget {
   StorePage({super.key});
 
   final List<String> imageList = [
-    "assets/PetFood.jpeg",
-    "assets/PetEquipment.jpeg",
-    "assets/PetBelts.jpeg",
+    "assets/pet-food.jpg",
+    "assets/pet-equepment.jpg",
+    "assets/pet-collar.jpg",
+    "assets/pet-medicine.jpg"
     //"assets/image04.jpg",
   ];
 
@@ -16,6 +17,7 @@ class StorePage extends StatelessWidget {
     "Pet-Food",
     "Pet-Equipment",
     "Pet-Belts",
+    "Pet-Medicine"
     // "Pet Community",
   ];
 
@@ -152,6 +154,7 @@ class StorePage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Container(
+                              height: 300,
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 31, 172, 156),
                                 borderRadius: BorderRadius.circular(50),
@@ -168,7 +171,7 @@ class StorePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              height: 180,
+                              // height: 250,
                             ),
                           ),
                           const SizedBox(height: 15),

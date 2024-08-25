@@ -20,7 +20,7 @@ class Comment extends StatelessWidget {
             "Community",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 3, 3, 3),
+              color: Color(0xffFFB03E),
               fontSize: 28,
               fontFamily: 'CustomFont',
             ),
@@ -129,11 +129,11 @@ class Comment extends StatelessWidget {
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
-                          width: 80,
+                          width: 73,
                         ),
                         Container(
                           height: 30,
-                          width: 100,
+                          width: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(90),
                             color: const Color.fromARGB(255, 249, 246, 244),
