@@ -78,7 +78,7 @@ class CommunityPage extends StatelessWidget {
                           child: TextField(
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
-                              hintText: "What's on your mind?",
+                              hintText: "What's on Your Mind?",
                               border: InputBorder.none,
                               hintStyle: TextStyle(
                                 color: Colors.black45,
