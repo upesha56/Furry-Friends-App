@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class PetRegistrationPage extends StatefulWidget {
   @override
@@ -35,80 +38,82 @@ class _PetRegistrationPageState extends State<PetRegistrationPage> {
     });
   }
 
-  void petRegistration() async {
-    // Start the loading indicator
+void petRegistration() async {
+  setState(() {
+    isLoading = true; // Start the loading indicator
+  });
+
+  // Retrieve input values
+  var petName = petNameController.text.trim();
+  var weight = weightController.text.trim();
+  // var height = heightController.text.trim();
+  var breed = breedController.text.trim();
+  var birthday = _birthdayController.text.trim();
+  var gender = selectedGender;
+
+  // Validate input fields
+  if (petName.isEmpty ||
+      weight.isEmpty ||
+      // height.isEmpty ||
+      breed.isEmpty ||
+      birthday.isEmpty ||
+      gender.isEmpty) {
     setState(() {
-      isLoading = true;
+      isLoading = false;
     });
+    showErrorDialog('Please fill all fields.');
+    return;
+  }
 
-    // Retrieve input values
-    var petName = petNameController.text.trim();
-    var weight = weightController.text.trim();
-    var height = heightController.text.trim();
-    var breed = breedController.text.trim();
-    var birthday = _birthdayController.text.trim();
-    var gender =
-        selectedGender; // Assuming `selectedGender` is already set correctly
-
-    // Validate input fields
-    if (petName.isEmpty ||
-        weight.isEmpty ||
-        height.isEmpty ||
-        breed.isEmpty ||
-        birthday.isEmpty ||
-        gender.isEmpty) {
+  try {
+    // Get the current user ID
+    final User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      showErrorDialog("You need to be logged in to register a pet.");
       setState(() {
         isLoading = false;
       });
-      showErrorDialog('Please fill all fields.');
       return;
     }
 
-    // Prepare the API call
-    try {
-      var url = Uri.parse('http://10.0.2.2:8000/pet-registration');
+    // Reference to the user's document in Firestore
+    DocumentReference userDoc = FirebaseFirestore.instance.collection('users').doc(user.uid);
 
-      var response = await http.post(
-        url,
-        headers: {"Content-Type": "application/json"},
-        body: json.encode({
-          "pet_name": petName,
-          "weight": weight,
-          "height": height,
-          "breed": breed,
-          "birthday": birthday,
-          "gender": gender,
-        }),
-      );
+    // Add the pet data to the 'pets' subcollection under the user document
+    await userDoc.collection('pets').add({
+      'pet_name': petName,
+      'weight': weight,
+      // 'height': height,
+      'breed': breed,
+      'birthday': birthday,
+      'gender': gender,
+      'created_at': FieldValue.serverTimestamp(),
+    });
 
-      // Stop the loading indicator
-      setState(() {
-        isLoading = false;
-      });
+    setState(() {
+      isLoading = false;
+    });
 
-      // Handle the API response
-      if (response.statusCode == 201) {
-        var data = json.decode(response.body);
-        if (data['detail'] == 'Pet Registration successfully') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PetRegistrationPage()),
-          );
-        } else {
-          showErrorDialog(data['detail'].toString());
-        }
-      } else {
-        var data = json.decode(response.body);
-        showErrorDialog(data['detail'].toString());
-      }
-    } catch (e) {
-      // Handle any errors that occur during the API call
-      setState(() {
-        isLoading = false;
-      });
-      showErrorDialog('An error occurred. Please try again.');
-    }
+    // Show success message or navigate to another screen
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Pet registered successfully!'),
+        backgroundColor: Colors.green,
+      ),
+    );
+
+    // Optionally, navigate to another screen after registration
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PetRegistrationPage()),
+    );
+  } catch (e) {
+    setState(() {
+      isLoading = false;
+    });
+    showErrorDialog('An error occurred. Please try again.');
   }
+}
 
   //error showing method
   void showErrorDialog(String errorMessage) {
