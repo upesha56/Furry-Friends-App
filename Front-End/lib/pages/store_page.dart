@@ -1,6 +1,7 @@
 import 'package:chat/pages/community.dart';
 import 'package:chat/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:chat/widgets/custom_bottom_nav.dart'; // Import the CustomBottomNavBar widget
 
 class StorePage extends StatelessWidget {
   StorePage({super.key});
@@ -10,7 +11,6 @@ class StorePage extends StatelessWidget {
     "assets/pet-equepment.jpg",
     "assets/pet-collar.jpg",
     "assets/pet-medicine.jpg"
-    //"assets/image04.jpg",
   ];
 
   final List<String> imageTitles = [
@@ -18,7 +18,6 @@ class StorePage extends StatelessWidget {
     "Pet-Equipment",
     "Pet-Belts",
     "Pet-Medicine"
-    // "Pet Community",
   ];
 
   @override
@@ -27,7 +26,6 @@ class StorePage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 249, 246, 244),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        // App Bar
         title: Align(
           alignment: Alignment.center,
           child: Text(
@@ -40,8 +38,8 @@ class StorePage extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: Colors.transparent, // Set to transparent
-        elevation: 1.0, // Remove the shadow
+        backgroundColor: Colors.transparent,
+        elevation: 1.0,
       ),
       body: Stack(
         children: [
@@ -57,10 +55,9 @@ class StorePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.all(70.0), // Add some padding if needed
+              padding: const EdgeInsets.all(70.0),
               child: Opacity(
-                opacity:
-                    0.3, // Adjust the opacity as needed for watermark effect
+                opacity: 0.3,
                 child: SizedBox(
                   height: 90,
                   width: 90,
@@ -74,11 +71,9 @@ class StorePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding:
-                  const EdgeInsets.all(190.0), // Add some padding if needed
+              padding: const EdgeInsets.all(190.0),
               child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
+                opacity: 0.4,
                 child: SizedBox(
                   height: 60,
                   width: 60,
@@ -90,10 +85,9 @@ class StorePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(60.0), // Add some padding if needed
+              padding: const EdgeInsets.all(60.0),
               child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
+                opacity: 0.4,
                 child: SizedBox(
                   height: 60,
                   width: 70,
@@ -105,10 +99,9 @@ class StorePage extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: const EdgeInsets.all(55.0), // Add some padding if needed
+              padding: const EdgeInsets.all(55.0),
               child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
+                opacity: 0.4,
                 child: SizedBox(
                   height: 60,
                   width: 60,
@@ -120,10 +113,9 @@ class StorePage extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: const EdgeInsets.all(10.0), // Add some padding if needed
+              padding: const EdgeInsets.all(10.0),
               child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
+                opacity: 0.4,
                 child: SizedBox(
                   height: 45,
                   width: 45,
@@ -140,7 +132,6 @@ class StorePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 800,
-                  // Adjust the height as needed
                   child: GridView.builder(
                     padding: const EdgeInsets.fromLTRB(20, 100, 30, 40),
                     gridDelegate:
@@ -171,7 +162,6 @@ class StorePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              // height: 250,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -180,8 +170,7 @@ class StorePage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.bold,
-                              fontFamily:
-                                  'CustomFont', // Use the custom font family
+                              fontFamily: 'CustomFont',
                               color: Color.fromARGB(255, 134, 81, 7),
                             ),
                           ),
@@ -197,54 +186,21 @@ class StorePage extends StatelessWidget {
         ],
       ),
       extendBody: true,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: 1,
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 35,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ));
-                  },
-                  child: const Icon(Icons.home)),
-              label: 'Home',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CommunityPage(),
-                        ));
-                  },
-                  child: const Icon(Icons.people)),
-              label: 'People',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Account',
-            ),
-          ],
-        ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 1, 
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CommunityPage()),
+            );
+          }
+        },
       ),
     );
   }
