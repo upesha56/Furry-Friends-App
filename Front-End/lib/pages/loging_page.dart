@@ -1,9 +1,8 @@
-import 'package:chat/pages/home_page.dart';
 import 'package:chat/pages/signup_page.dart';
-import 'package:chat/pages/userprofile_page.dart';
+import 'package:chat/pages/home_page.dart';
+import 'package:chat/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -25,47 +24,36 @@ class _loginState extends State<login> {
       isLoading = true;
     });
 
-    var user_name = userNameController.text;
+    var email = userNameController.text;
     var password = passwordController.text;
 
     // Ensure both fields are filled
-    if (user_name.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty) {
       setState(() {
         isLoading = false;
       });
-      showErrorDialog('Please enter both username and password.');
+      showErrorDialog('Please enter both email and password.');
       return;
     }
+
     try {
-      var url = Uri.parse('http://10.0.2.2:8000/login');
-      var response = await http.post(url,
-          headers: {"Content-Type": "application/json"},
-          body: json.encode({"user_name": user_name, "password": password}));
+      User? user = await AuthService.instance.signInWithEmail(email, password);
 
       setState(() {
         isLoading = false;
       });
 
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-
-        if (data['detail'] == 'user logging successfully') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const userProfile()),
-          );
-        } else {
-          showErrorDialog(data['detail'].toString());
-        }
-      } else {
-        var data = json.decode(response.body);
-        showErrorDialog(data['detail'].toString());
+      if (user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       }
     } catch (e) {
       setState(() {
         isLoading = false;
       });
-      showErrorDialog('An error occurred. Please try again.');
+      showErrorDialog('Login failed. Please check your email and password.');
     }
   }
 
@@ -97,98 +85,7 @@ class _loginState extends State<login> {
         backgroundColor: const Color.fromARGB(255, 249, 246, 244),
         body: Stack(
           children: [
-            SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Image.asset(
-                "assets/foot.png",
-                alignment: AlignmentDirectional.centerStart,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(70.0), // Add some padding if needed
-                child: Opacity(
-                  opacity:
-                      0.3, // Adjust the opacity as needed for watermark effect
-                  child: SizedBox(
-                    height: 90,
-                    width: 90,
-                    child: Image.asset(
-                      'assets/paw.png',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(190.0), // Add some padding if needed
-                child: Opacity(
-                  opacity:
-                      0.4, // Adjust the opacity as needed for watermark effect
-                  child: SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: Image.asset('assets/paw.png'),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(60.0), // Add some padding if needed
-                child: Opacity(
-                  opacity:
-                      0.4, // Adjust the opacity as needed for watermark effect
-                  child: SizedBox(
-                    height: 60,
-                    width: 70,
-                    child: Image.asset('assets/paw.png'),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(55.0), // Add some padding if needed
-                child: Opacity(
-                  opacity:
-                      0.4, // Adjust the opacity as needed for watermark effect
-                  child: SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: Image.asset('assets/paw.png'),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(10.0), // Add some padding if needed
-                child: Opacity(
-                  opacity:
-                      0.4, // Adjust the opacity as needed for watermark effect
-                  child: SizedBox(
-                    height: 45,
-                    width: 45,
-                    child: Image.asset('assets/paw.png'),
-                  ),
-                ),
-              ),
-            ), // Background Image (optional)
-
+            // Your existing UI elements (background, buttons, etc.)
             SingleChildScrollView(
               padding: const EdgeInsets.all(30),
               child: Column(
@@ -243,7 +140,7 @@ class _loginState extends State<login> {
         TextField(
           controller: userNameController,
           decoration: InputDecoration(
-              hintText: "User Name",
+              hintText: "Email",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),
               ),

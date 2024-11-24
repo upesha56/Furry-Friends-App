@@ -1,10 +1,7 @@
-import 'package:chat/pages/home_page.dart';
 import 'package:chat/pages/loging_page.dart';
-import 'package:chat/pages/userprofile_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class signUp extends StatefulWidget {
   const signUp({super.key});
@@ -14,7 +11,7 @@ class signUp extends StatefulWidget {
 }
 
 class _signUpState extends State<signUp> {
-  // text editing controllers
+  final emailController = TextEditingController();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -27,56 +24,75 @@ class _signUpState extends State<signUp> {
       isLoading = true;
     });
 
+    var email = emailController.text;
     var user_name = userNameController.text;
     var password = passwordController.text;
     var phone_number = phoneNumberController.text;
 
-    // Ensure both fields are filled
-    if (user_name.isEmpty || password.isEmpty || phone_number.isEmpty) {
+    if (email.isEmpty ||
+        user_name.isEmpty ||
+        password.isEmpty ||
+        phone_number.isEmpty) {
       setState(() {
         isLoading = false;
       });
-      showErrorDialog('Please enter username ,password and phone Number.');
+      showErrorDialog(
+          'Please enter email, username, password, and phone number.');
       return;
     }
-    try {
-      var url = Uri.parse('http://10.0.2.2:8000/register');
-      var response = await http.post(url,
-          headers: {"Content-Type": "application/json"},
-          body: json.encode({
-            "user_name": user_name,
-            "password": password,
-            "phone_number": phone_number
-          }));
 
+    try {
+      // Register user using Firebase Auth
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Save additional user details (like phone number) in Firestore
+      if (userCredential.user != null) {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .set({
+          'email': email,
+          'username': user_name,
+          'phone_number': phone_number,
+          'created_at': Timestamp.now(),
+        });
+
+        // Navigate to Home Page on successful registration
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const login()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
       setState(() {
         isLoading = false;
       });
-
-      if (response.statusCode == 201) {
-        var data = json.decode(response.body);
-
-        if (data['detail'] == 'User created successfully') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const userProfile()),
-          );
-        } else {
-          showErrorDialog(data['detail'].toString());
-        }
+      if (e.code == 'weak-password') {
+        showErrorDialog('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        showErrorDialog('The account already exists for that email.');
+      } else if (e.code == 'invalid-email') {
+        showErrorDialog('The email address is badly formatted.');
       } else {
-        var data = json.decode(response.body);
-        showErrorDialog(data['detail'].toString());
+        showErrorDialog('An error occurred. Please try again.');
       }
     } catch (e) {
       setState(() {
         isLoading = false;
       });
       showErrorDialog('An error occurred. Please try again.');
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  //error showing method
+  // Error showing method
   void showErrorDialog(String errorMessage) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -268,6 +284,18 @@ class _signUpState extends State<signUp> {
               fillColor: Theme.of(context).primaryColorLight.withOpacity(0.2),
               filled: true,
               prefixIcon: const Icon(Icons.person)),
+        ),
+        const SizedBox(height: 10),
+         TextField(
+          controller: emailController,
+          decoration: InputDecoration(
+              hintText: "Email",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              fillColor: Theme.of(context).primaryColorLight.withOpacity(0.2),
+              filled: true,
+              prefixIcon: const Icon(Icons.email)),
         ),
         const SizedBox(height: 10),
         TextField(

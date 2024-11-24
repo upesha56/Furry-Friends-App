@@ -3,9 +3,8 @@ import 'package:chat/pages/home_page.dart';
 import 'package:chat/pages/store_page.dart';
 import 'package:chat/pages/userprofile_page.dart';
 import 'package:chat/widgets/first_container.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:chat/widgets/custom_bottom_nav.dart'; // Import the CustomBottomNavBar
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CommunityPage extends StatelessWidget {
   CommunityPage({super.key});
@@ -17,7 +16,6 @@ class CommunityPage extends StatelessWidget {
       extendBodyBehindAppBar: true, // Extend the body behind the AppBar
 
       appBar: AppBar(
-        // App Bar
         title: const Align(
           alignment: Alignment.topLeft,
           child: Text(
@@ -29,11 +27,8 @@ class CommunityPage extends StatelessWidget {
             ),
           ),
         ),
-
-        backgroundColor:
-            const Color(0xffFFB03E).withOpacity(0.1), // Set to transparent
+        backgroundColor: const Color(0xffFFB03E).withOpacity(0.1), // Set to transparent
         elevation: 2,
-        // Remove the shadow
       ),
 
       body: Stack(
@@ -136,64 +131,27 @@ class CommunityPage extends StatelessWidget {
         ],
       ),
 
-      extendBody: false,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: 2,
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 35,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ));
-                  },
-                  child: const Icon(Icons.home)),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StorePage(),
-                        ));
-                  },
-                  child: const Icon(Icons.shopping_cart)),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {}, child: const Icon(Icons.people)),
-              label: 'People',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => userProfile(),
-                        ));
-                  },
-                  child: Icon(Icons.account_circle)),
-              label: 'Account',
-            ),
-          ],
-        ),
+      extendBody: true,
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 2, // Set the current index to 2 for the Community page
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          } else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => StorePage()),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => userProfile()),
+            );
+          }
+        },
       ),
     );
   }

@@ -1,6 +1,6 @@
-import 'package:chat/pages/community.dart';
-import 'package:chat/pages/store_page.dart';
+import 'package:chat/pages/gps.dart';
 import 'package:flutter/material.dart';
+import 'package:chat/widgets/custom_bottom_nav.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -25,7 +25,6 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 249, 246, 244),
       extendBodyBehindAppBar: true, // Extend the body behind the AppBar
       appBar: AppBar(
-        // App Bar
         title: const Align(
           alignment: Alignment.center,
           child: Text(
@@ -38,98 +37,12 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: Colors.transparent, // Set to transparent
+        backgroundColor: Colors.transparent,
         elevation: 1.0, // Remove the shadow
       ),
       body: Stack(
         children: [
-          SizedBox(
-            height: 232,
-            width: 186,
-            child: Image.asset(
-              "assets/foot.png",
-              alignment: AlignmentDirectional.centerStart,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(70.0), // Add some padding if needed
-              child: Opacity(
-                opacity:
-                    0.3, // Adjust the opacity as needed for watermark effect
-                child: SizedBox(
-                  height: 90,
-                  width: 90,
-                  child: Image.asset(
-                    'assets/paw.png',
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding:
-                  const EdgeInsets.all(190.0), // Add some padding if needed
-              child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
-                child: SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: Image.asset('assets/paw.png'),
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(60.0), // Add some padding if needed
-              child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
-                child: SizedBox(
-                  height: 60,
-                  width: 70,
-                  child: Image.asset('assets/paw.png'),
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(55.0), // Add some padding if needed
-              child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
-                child: SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: Image.asset('assets/paw.png'),
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0), // Add some padding if needed
-              child: Opacity(
-                opacity:
-                    0.4, // Adjust the opacity as needed for watermark effect
-                child: SizedBox(
-                  height: 45,
-                  width: 45,
-                  child: Image.asset('assets/paw.png'),
-                ),
-              ),
-            ),
-          ),
+          // Add images and paw prints code
           SingleChildScrollView(
             child: Column(
               children: [
@@ -138,7 +51,6 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 800,
-                  // Adjust the height as needed
                   child: GridView.builder(
                     padding: const EdgeInsets.fromLTRB(20, 100, 30, 40),
                     gridDelegate:
@@ -151,24 +63,36 @@ class HomePage extends StatelessWidget {
                       return Column(
                         children: [
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 31, 172, 156),
-                                borderRadius: BorderRadius.circular(50),
-                                image: DecorationImage(
-                                  image: AssetImage(imageList[index]),
-                                  fit: BoxFit.cover,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    spreadRadius: 5,
-                                    blurRadius: 3,
-                                    offset: const Offset(5, 4.5),
+                            child: GestureDetector(
+                              onTap: () {
+                                if (imageTitles[index] == "Track My Pet") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GpsPage()),
+                                  );
+                                }
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 31, 172, 156),
+                                  borderRadius: BorderRadius.circular(50),
+                                  image: DecorationImage(
+                                    image: AssetImage(imageList[index]),
+                                    fit: BoxFit.cover,
                                   ),
-                                ],
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius: 5,
+                                      blurRadius: 3,
+                                      offset: const Offset(5, 4.5),
+                                    ),
+                                  ],
+                                ),
+                                height: 180,
                               ),
-                              height: 180,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -177,8 +101,7 @@ class HomePage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.bold,
-                              fontFamily:
-                                  'CustomFont', // Use the custom font family
+                              fontFamily: 'CustomFont',
                               color: Color.fromARGB(255, 134, 81, 7),
                             ),
                           ),
@@ -194,55 +117,11 @@ class HomePage extends StatelessWidget {
         ],
       ),
       extendBody: true,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: 0,
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 35,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon:
-                  GestureDetector(onTap: () {}, child: const Icon(Icons.home)),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StorePage(),
-                        ));
-                  },
-                  child: const Icon(Icons.shopping_cart)),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CommunityPage(),
-                        ));
-                  },
-                  child: const Icon(Icons.people)),
-              label: 'People',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Account',
-            ),
-          ],
-        ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 0,
+        onTap: (index) {
+          // Handle navigation logic here
+        },
       ),
     );
   }
