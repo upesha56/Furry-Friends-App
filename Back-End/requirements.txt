@@ -1,7 +1,0 @@
-flask
-sqlalchemy
-python-dotenv
-flask_cors
-mysql-connector-python
-passlib
-bcrypt
