@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Color(0xffFFB03E),
-              fontSize: 28,
+              fontSize: 29,
               fontFamily: 'CustomFont',
             ),
           ),
