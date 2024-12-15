@@ -115,7 +115,7 @@ class _MedicalRecordState extends State<MedicalRecord> {
                   const SizedBox(height: 90),
                   const Center(
                     child: Text(
-                      "Pet's Name",
+                      "Your Pet Name",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -201,7 +201,7 @@ class _MedicalRecordState extends State<MedicalRecord> {
                               size: 40, color: Colors.black), // Add your icon
                           SizedBox(height: 10), // Spacing between icon and text
                           Text(
-                            "Add Your Recird",
+                            "Add Your Record",
                             style: TextStyle(
                               fontSize: 24,
                               color: Colors.black, // Text color
