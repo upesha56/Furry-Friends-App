@@ -36,12 +36,10 @@ class _MedicalRecordState extends State<MedicalRecord> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
-    if (pickedDate != null) {
-      setState(() {
-        _dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
-      });
+    setState(() {
+      _dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+    });
     }
-  }
 
   @override
   Widget build(BuildContext context) {
