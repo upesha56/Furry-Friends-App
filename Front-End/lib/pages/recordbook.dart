@@ -159,7 +159,7 @@ class RecordBookPage extends StatelessWidget {
   Widget _emailField(BuildContext context) {
     return const TextField(
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: 'E-mail',
         border: OutlineInputBorder(),
       ),
     );
@@ -187,7 +187,7 @@ class RecordBookPage extends StatelessWidget {
   Widget _phoneField(BuildContext context) {
     return const TextField(
       decoration: InputDecoration(
-        labelText: 'Phone no',
+        labelText: 'Phone No',
         border: OutlineInputBorder(),
       ),
       keyboardType: TextInputType.phone,
