@@ -1,5 +1,6 @@
 import 'package:chat/pages/community.dart';
 import 'package:chat/pages/home_page.dart';
+import 'package:chat/pages/pet_food_market.dart';
 import 'package:flutter/material.dart';
 import 'package:chat/widgets/custom_bottom_nav.dart'; // Import the CustomBottomNavBar widget
 
@@ -141,40 +142,53 @@ class StorePage extends StatelessWidget {
                       mainAxisSpacing: 30.0,
                     ),
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 300,
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 31, 172, 156),
-                                borderRadius: BorderRadius.circular(50),
-                                image: DecorationImage(
-                                  image: AssetImage(imageList[index]),
-                                  fit: BoxFit.cover,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    spreadRadius: 1,
-                                    blurRadius: 0,
-                                    offset: const Offset(5, 4.5),
+                      return GestureDetector(
+                        onTap: () {
+                          if (index == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PetFoodMarketplacePage()),
+                            );
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 300,
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 31, 172, 156),
+                                  borderRadius: BorderRadius.circular(50),
+                                  image: DecorationImage(
+                                    image: AssetImage(imageList[index]),
+                                    fit: BoxFit.cover,
                                   ),
-                                ],
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius: 1,
+                                      blurRadius: 0,
+                                      offset: const Offset(5, 4.5),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 15),
-                          Text(
-                            imageTitles[index],
-                            style: const TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'CustomFont',
-                              color: Color.fromARGB(255, 134, 81, 7),
+                            const SizedBox(height: 15),
+                            Text(
+                              imageTitles[index],
+                              style: const TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'CustomFont',
+                                color: Color.fromARGB(255, 134, 81, 7),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                     itemCount: imageList.length,
@@ -187,7 +201,7 @@ class StorePage extends StatelessWidget {
       ),
       extendBody: true,
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 1, 
+        currentIndex: 1,
         onTap: (index) {
           if (index == 0) {
             Navigator.push(
