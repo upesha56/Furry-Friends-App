@@ -1,6 +1,9 @@
 import 'package:chat/pages/community.dart';
 import 'package:chat/pages/home_page.dart';
+import 'package:chat/pages/pet_belts_market.dart';
+import 'package:chat/pages/pet_equipemnt_market.dart';
 import 'package:chat/pages/pet_food_market.dart';
+import 'package:chat/pages/pet_medicine_marketplace.dart';
 import 'package:flutter/material.dart';
 import 'package:chat/widgets/custom_bottom_nav.dart'; // Import the CustomBottomNavBar widget
 
@@ -145,11 +148,36 @@ class StorePage extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           if (index == 0) {
+                            // Navigate to Pet Food Marketplace
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
                                       PetFoodMarketplacePage()),
+                            );
+                          } else if (index == 1) {
+                            // Navigate to Pet Equipment Marketplace
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PetEquipmentMarketplacePage()),
+                            );
+                          } else if (index == 2) {
+                            // Navigate to Pet Belts Marketplace
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PetBeltsMarketplacePage()),
+                            );
+                          } else if (index == 3) {
+                            // Navigate to Pet Belts Marketplace
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PetMedicineMarketplacePage()),
                             );
                           }
                         },
