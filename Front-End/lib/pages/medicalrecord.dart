@@ -37,9 +37,9 @@ class _MedicalRecordState extends State<MedicalRecord> {
       lastDate: DateTime(2101),
     );
     setState(() {
-      _dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      _dateController.text = DateFormat('yyyy-MM-dd').format(pickedDate!);
     });
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
