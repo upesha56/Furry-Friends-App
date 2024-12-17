@@ -8,10 +8,13 @@ class PetFoodMarketplacePage extends StatelessWidget {
     {"name": "Cat Food", "image": "assets/foodfrcats.png", "price": "\$20"},
     {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
     {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
-    {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
-    {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
-    {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
-    {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
+    {"name": "Rabbit Food", "image": "assets/rabbitfood.png", "price": "\$15"},
+    {"name": "Pig Food", "image": "assets/pigfeed.png", "price": "\$18"},
+    {
+      "name": "Chicken Food",
+      "image": "assets/chickenfeed.png",
+      "price": "\$15"
+    },
   ];
 
   @override

@@ -119,6 +119,9 @@ flutter:
   - assets/DewormingTablets.png
   - assets/FleaMedicine.png
   - assets/PainReliefGel.png
+  - assets/rabbitfood.png
+  - assets/pigfeed.png
+  - assets/chickenfeed.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
