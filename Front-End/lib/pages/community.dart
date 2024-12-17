@@ -27,7 +27,8 @@ class CommunityPage extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: const Color(0xffFFB03E).withOpacity(0.1), // Set to transparent
+        backgroundColor:
+            const Color(0xffFFB03E).withOpacity(0.1), // Set to transparent
         elevation: 2,
       ),
 
@@ -131,7 +132,7 @@ class CommunityPage extends StatelessWidget {
         ],
       ),
 
-      extendBody: true,
+      extendBody: false,
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: 2, // Set the current index to 2 for the Community page
         onTap: (index) {

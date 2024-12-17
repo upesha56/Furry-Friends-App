@@ -5,7 +5,7 @@ class PetEquipmentMarketplacePage extends StatelessWidget {
 
   final List<Map<String, String>> petEquipmentItems = [
     {"name": "Leash", "image": "assets/belts.jpg", "price": "\$15"},
-    {"name": "Cage", "image": "assets/cage.png", "price": "\$50"},
+    {"name": "Cage", "image": "assets/cagecage.png", "price": "\$50"},
     {"name": "Pet Bed", "image": "assets/bedd.png", "price": "\$30"},
     {"name": "Grooming Kit", "image": "assets/grooming.jpg", "price": "\$20"},
     {"name": "Pet Toys", "image": "assets/toy.jpg", "price": "\$10"},

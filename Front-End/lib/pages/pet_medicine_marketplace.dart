@@ -6,7 +6,7 @@ class PetMedicineMarketplacePage extends StatelessWidget {
   final List<Map<String, String>> petMedicineItems = [
     {
       "name": "Vitamin Supplements",
-      "image": "assets/vitamin.png",
+      "image": "assets/vitaminss.png",
       "price": "\$20"
     },
     {
@@ -21,7 +21,7 @@ class PetMedicineMarketplacePage extends StatelessWidget {
     },
     {
       "name": "Pain Relief Gel",
-      "image": "assets/PainReliefGel.png",
+      "image": "assets/PainReliefGels.png",
       "price": "\$18"
     },
   ];
