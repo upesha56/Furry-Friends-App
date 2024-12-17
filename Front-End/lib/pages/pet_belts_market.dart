@@ -4,16 +4,16 @@ class PetBeltsMarketplacePage extends StatelessWidget {
   PetBeltsMarketplacePage({super.key});
 
   final List<Map<String, String>> petBeltsItems = [
-    {"name": "Dog Collar", "image": "assets/dog_collar.jpg", "price": "\$10"},
-    {"name": "Cat Harness", "image": "assets/cat_harness.jpg", "price": "\$15"},
+    {"name": "Dog Collar", "image": "assets/dogcollars.png", "price": "\$10"},
+    {"name": "Cat Harness", "image": "assets/catharness.jpg", "price": "\$15"},
     {
       "name": "Leather Leash",
-      "image": "assets/leather_leash.jpg",
-      "price": "\$25"
+      "image": "assets/leatherleash.png",
+      "price": "\$35"
     },
     {
       "name": "Reflective Belt",
-      "image": "assets/reflective_belt.jpg",
+      "image": "assets/reflectivebelts.png",
       "price": "\$20"
     },
   ];

@@ -4,14 +4,12 @@ class PetEquipmentMarketplacePage extends StatelessWidget {
   PetEquipmentMarketplacePage({super.key});
 
   final List<Map<String, String>> petEquipmentItems = [
-    {"name": "Leash", "image": "assets/leash.jpg", "price": "\$15"},
-    {"name": "Cage", "image": "assets/cage.jpg", "price": "\$50"},
-    {"name": "Pet Bed", "image": "assets/pet_bed.jpg", "price": "\$30"},
-    {
-      "name": "Grooming Kit",
-      "image": "assets/grooming_kit.jpg",
-      "price": "\$20"
-    },
+    {"name": "Leash", "image": "assets/belts.jpg", "price": "\$15"},
+    {"name": "Cage", "image": "assets/cagecage.png", "price": "\$50"},
+    {"name": "Pet Bed", "image": "assets/bedd.png", "price": "\$30"},
+    {"name": "Grooming Kit", "image": "assets/grooming.jpg", "price": "\$20"},
+    {"name": "Pet Toys", "image": "assets/toy.jpg", "price": "\$10"},
+    {"name": "nail Clippers", "image": "assets/nail.png", "price": "\$25"},
   ];
 
   @override
