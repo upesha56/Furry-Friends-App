@@ -4,10 +4,14 @@ class PetFoodMarketplacePage extends StatelessWidget {
   PetFoodMarketplacePage({super.key});
 
   final List<Map<String, String>> petFoodItems = [
-    {"name": "Dog Food", "image": "assets/dog_food.jpg", "price": "\$25"},
-    {"name": "Cat Food", "image": "assets/cat_food.jpg", "price": "\$20"},
-    {"name": "Bird Feed", "image": "assets/bird_feed.jpg", "price": "\$15"},
-    {"name": "Fish Food", "image": "assets/fish_food.jpg", "price": "\$10"},
+    {"name": "Dog Food", "image": "assets/dogfood.jpeg", "price": "\$25"},
+    {"name": "Cat Food", "image": "assets/foodfrcats.png", "price": "\$20"},
+    {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
+    {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
+    {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
+    {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
+    {"name": "Bird Food", "image": "assets/birdfood.png", "price": "\$15"},
+    {"name": "Fish Food", "image": "assets/fishfeed.png", "price": "\$10"},
   ];
 
   @override

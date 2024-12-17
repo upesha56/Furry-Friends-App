@@ -6,22 +6,22 @@ class PetMedicineMarketplacePage extends StatelessWidget {
   final List<Map<String, String>> petMedicineItems = [
     {
       "name": "Vitamin Supplements",
-      "image": "assets/vitamins.jpg",
+      "image": "assets/vitamin.png",
       "price": "\$20"
     },
     {
       "name": "Deworming Tablets",
-      "image": "assets/deworming.jpg",
+      "image": "assets/DewormingTablets.png",
       "price": "\$15"
     },
     {
       "name": "Flea Medicine",
-      "image": "assets/flea_medicine.jpg",
-      "price": "\$25"
+      "image": "assets/FleaMedicine.png",
+      "price": "\$22"
     },
     {
       "name": "Pain Relief Gel",
-      "image": "assets/pain_relief_gel.jpg",
+      "image": "assets/PainReliefGel.png",
       "price": "\$18"
     },
   ];

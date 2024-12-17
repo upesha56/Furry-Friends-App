@@ -83,7 +83,6 @@ flutter:
   - assets/belts.jpg
   - assets/equipments.jpeg
   - assets/food.jpeg
-  - assets/toys.jpeg
   - assets/PetFood.jpeg
   - assets/PetBelts.jpeg
   - assets/PetEquipment.jpeg
@@ -102,6 +101,24 @@ flutter:
   - assets/pet-equepment.jpg
   - assets/pet-medicine.jpg
   - assets/medical-records.jpg
+  - assets/dogfood.jpeg
+  - assets/foodfrcats.png
+  - assets/birdfood.png
+  - assets/fishfeed.png
+  - assets/belts.jpg
+  - assets/grooming.jpg
+  - assets/cage.png
+  - assets/bedd.png
+  - assets/toy.jpg
+  - assets/nail.png
+  - assets/dogcollar.png
+  - assets/catharness.jpg
+  - assets/leatherleash.png
+  - assets/reflectivebelts.png
+  - assets/vitamin.png
+  - assets/DewormingTablets.png
+  - assets/FleaMedicine.png
+  - assets/PainReliefGel.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
